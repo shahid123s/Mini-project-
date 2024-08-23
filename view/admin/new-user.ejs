@@ -1,0 +1,37 @@
+<%- include('../layouts/header.ejs') %>
+
+<body class="d-flex justify-content-center align-items-center py-4 bg-body-secondary">
+    <div class="container d-flex justify-content-center align-items-center">
+        <div class="card p-4" style="width: 100%; max-width: 400px;">
+            <% if (typeof message !== 'undefined') { %>
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <%= message %>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            <% } %>
+            <h1 class="h3 mb-4 text-center fw-bold">Add New User</h1>
+            <form action="/admin/new-user" method="post">
+                <div class="form-floating mb-3">
+                    <input type="text" name="name" class="form-control" id="floatingName" placeholder="Name" required>
+                    <label for="floatingName">Name</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="text" name="contact" class="form-control" id="floatingPhone" placeholder="Mobile Number" maxlength="10" required>
+                    <label for="floatingPhone">Mobile Number</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="email" name="email" class="form-control" id="floatingEmail" placeholder="Email" required>
+                    <label for="floatingEmail">Email</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password" required>
+                    <label for="floatingPassword">Password</label>
+                </div>
+                <button class="btn btn-primary w-100 py-2" type="submit">Add User</button>
+                <a href="/admin/dashboard" class="btn btn-danger mt-3 w-100">Back to Dashboard</a>
+            </form>
+        </div>
+    </div>
+</body>
+
+<%- include('../layouts/footer.ejs') %>

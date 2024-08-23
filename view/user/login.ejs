@@ -1,0 +1,28 @@
+<%- include('../layouts/header') %>
+
+<body class="d-flex justify-content-center align-items-center py-4 bg-body-secondary">
+    <div class="card-lg-8 w-25 m-5 pt-5 p-4 bg-white shadow rounded">
+        <h1 class="text-center">Login</h1>
+        <% if (typeof message !== 'undefined') { %>
+            <div class="alert alert-danger text-center">
+                <%= message %>
+            </div>
+        <% } %>
+        <form action="/login" method="post" class="form-signin w-100 m-auto">
+            <div class="form-floating mb-2">
+                <input type="email" name="email" class="form-control" placeholder="Email" required>
+                <label for="email">Email</label>
+            </div>
+            <div class="form-floating mb-2">
+                <input type="password" name="password" class="form-control" placeholder="Password" required>
+                <label for="password">Password</label>
+            </div>
+            <button class="btn btn-primary w-100 py-2" type="submit">Login</button>
+        </form>
+        <div class="text-center mt-3">
+            <a href="/register" class="link-offset-2 link-underline">Create an account</a>
+        </div>
+    </div>
+</body>
+
+<%- include('../layouts/footer') %>

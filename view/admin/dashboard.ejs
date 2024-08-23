@@ -1,0 +1,77 @@
+<%- include('../layouts/header.ejs') %>
+
+<nav class="navbar bg-body-secondary">
+    <div class="container-fluid d-flex justify-content-around gap-4">
+        <a class="navbar-brand text-dark fw-semibold fs-5">Dashboard</a>
+        <form class="d-flex gap-2" role="search" method="post" action="">
+            <div><input class="form-control me-2" name="search" type="search" placeholder="Search" aria-label="Search"></div>
+            <div><button class="btn btn-outline-primary" type="submit">Search</button>
+                <a href="/admin/new-user" class="btn btn-primary btn-sm ms-2 p-2" title="Add User">Add User</a></div>
+        </form>
+        <a href="/admin/home" class="btn btn-danger btn-md ms-2">Home Page</a>
+    </div>
+</nav>
+
+<div class="table-responsive container-fluid">
+    <table class="table table-hover table-sm">
+        <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Phone</th>
+                <th scope="col">Email</th>
+                <th scope="col" class="text-end">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% if (user.length > 0) { %>
+                <% for (let i = 0; i < user.length; i++) { %>
+                    <tr class="align-middle">
+                        <td><%= user[i].name %></td>
+                        <td><%= user[i].contact %></td>
+                        <td><%= user[i].email %></td>
+                        <td class="text-end">
+                            <div class="d-flex flex-row justify-content-end gap-2">
+                                <a href="/admin/user-edit?id=<%= user[i]._id %>" class="btn btn-success btn-md" title="Edit">Edit</a>
+                                <a href="#" onclick="confirmDelete('<%= user[i]._id %>')" class="btn btn-danger btn-md" title="Delete">Delete</a>
+                            </div>
+                        </td>
+                    </tr>
+                <% } %>
+            <% } else { %>
+                <tr>
+                    <td colspan="4">Users not found!</td>
+                </tr>
+            <% } %>
+        </tbody>
+    </table>
+</div>
+
+<!-- Modal -->
+<div id="confirmDeleteModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background-color:rgba(0,0,0,0.5);">
+    <div style="background-color:white; padding:20px; margin:15% auto; width:300px; text-align:center;">
+        <h3>Are you sure you want to delete this user?</h3>
+        <button id="confirmDeleteBtn" class="btn btn-primary">Yes</button>
+        <button onclick="closeModal()" class="btn btn-secondary">Cancel</button>
+    </div>
+</div>
+
+<%- include('../layouts/footer.ejs') %>
+
+<script>
+    let userIdToDelete;
+
+    function confirmDelete(id) {
+        userIdToDelete = id;
+        document.getElementById('confirmDeleteModal').style.display = 'block';
+    }
+
+    function closeModal() {
+        document.getElementById('confirmDeleteModal').style.display = 'none';
+    }
+
+    document.getElementById('confirmDeleteBtn').addEventListener('click', function() {
+        if (userIdToDelete) {
+            window.location.href = '/admin/user-delete?id=' + userIdToDelete;
+        }
+    });
+</script>

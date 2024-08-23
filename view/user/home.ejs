@@ -1,0 +1,19 @@
+<%- include('../layouts/header') %>
+
+<div class="container d-flex justify-content-center align-items-center my-5">
+  <div class="card text-center" style="width: 100%; max-width: 800px;">
+      <div class="card-header">
+          <h1>Welcome to Home Page</h1>
+      </div>
+      <div class="card-body">
+          <h4 class="card-title">User Details</h4>
+          <p class="card-text"><strong>Name:</strong> <%= user.name %></p>
+          <p class="card-text"><strong>Email:</strong> <%= user.email %></p>
+          <p class="card-text"><strong>Contact:</strong> <%= user.contact %></p>
+          <a href="/edit" class="btn btn-primary">Edit Your Profile</a>
+          <a href="/logout" class="btn btn-danger me-2">Logout</a>
+      </div>
+  </div>
+</div>
+
+<%- include('../layouts/footer') %>
