@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const express = require('express');
 const path = require('path')
 
-const mongoUrl = 'mongodb+srv://shahidnoushad04:ShahidN%4012@cluster0.ruygf.mongodb.net/'
+const mongoUrl = 'mongodb+srv://shahidnoushad04:S%4012@cluster0.ruygf.mongodb.net/'
 
 async function connect() {
     try {
